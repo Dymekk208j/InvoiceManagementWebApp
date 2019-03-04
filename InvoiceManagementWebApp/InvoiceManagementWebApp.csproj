@@ -223,6 +223,8 @@
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CompanyRepository.cs" />
+    <Compile Include="Repository\InvoiceLineRepository.cs" />
+    <Compile Include="Repository\InvoiceRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
