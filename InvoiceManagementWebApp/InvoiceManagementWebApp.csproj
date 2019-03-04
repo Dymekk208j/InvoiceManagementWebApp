@@ -214,7 +214,10 @@
       <DependentUpon>201903041643585_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DatabaseModels\Company.cs" />
     <Compile Include="Models\DatabaseModels\DatabaseInitializer\DbInitializer.cs" />
+    <Compile Include="Models\DatabaseModels\Invoice.cs" />
+    <Compile Include="Models\DatabaseModels\InvoiceLine.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseModels\IdentityModels.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />

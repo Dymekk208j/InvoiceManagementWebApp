@@ -8,7 +8,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using InvoiceManagementWebApp.Models;
 using InvoiceManagementWebApp.Models.ViewModels;
-using LeagueOfLegendsFindTeamApp.Controllers;
 
 namespace InvoiceManagementWebApp.Controllers
 {

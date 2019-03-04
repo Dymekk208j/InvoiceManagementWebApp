@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using InvoiceManagementWebApp;
-using InvoiceManagementWebApp.Models;
+using InvoiceManagementWebApp.Models.DatabaseModels;
 using InvoiceManagementWebApp.Models.ViewModels;
 using InvoiceManagementWebApp.Repository;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
-namespace LeagueOfLegendsFindTeamApp.Controllers
+namespace InvoiceManagementWebApp.Controllers
 {
     [Authorize]
     public class AccountController : Controller
