@@ -1,0 +1,85 @@
+﻿<div class="menu-sidebar2__content js-scrollbar1">
+    <div class="account2">
+        <div class="image img-cir img-120">
+            <img src="~/Content/images/icon/avatar-big-01.jpg" alt="John Doe" />
+        </div>
+        <h4 class="name">@Html.Name(User.Identity.Name)</h4>
+        @if (Request.IsAuthenticated)
+        {
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <button type="submit" class="btn btn-link">Sign out</button>
+            }
+        }
+    </div>
+    <nav class="navbar-sidebar2">
+        <ul class="list-unstyled navbar__list">
+            <li class="active has-sub">
+                <a href="#">
+                    <i class="fas fa-folder-open"></i>Faktury zakupu
+                </a>
+            </li>
+            <li class="has-sub">
+                <a href="#">
+                    <i class="fas fa-folder-open"></i>Faktury sprzedaży
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-folder"></i>Zaksięgowane faktury zakupu
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-folder"></i>Zaksięgowane faktury sprzedaży
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fas fa-address-book"></i>Nabywcy
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="far fa-address-book"></i>Sprzedawcy
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fas fa-cogs"></i>Ustawienia
+                </a>
+            </li>
+          
+
+            @*@if (User.IsInRole("Admin"))
+            {
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="zmdi zmdi-settings"></i>Administration menu
+                        <span class="arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a class="pt-1 pb-1" href="@Url.Action("", "")">
+                                <i class="zmdi zmdi-minus"></i>Languages
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            }*@
+        </ul>
+    </nav>
+
+ 
+</div>
+
+
+
