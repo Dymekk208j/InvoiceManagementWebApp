@@ -94,7 +94,7 @@ namespace InvoiceManagementWebApp.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Invoice");
                 }
                 else
                 {
@@ -174,7 +174,7 @@ namespace InvoiceManagementWebApp.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Invoice");
                 }
                 else
                 {
@@ -405,7 +405,7 @@ namespace InvoiceManagementWebApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Invoice");
         }
 
         //
@@ -462,7 +462,7 @@ namespace InvoiceManagementWebApp.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Invoice");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

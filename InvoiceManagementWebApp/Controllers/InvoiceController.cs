@@ -2,7 +2,7 @@
 
 namespace InvoiceManagementWebApp.Controllers
 {
-    public class HomeController : Controller
+    public class InvoiceController : Controller
     {
         public ActionResult Index()
         {
