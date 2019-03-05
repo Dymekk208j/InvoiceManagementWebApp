@@ -17,7 +17,7 @@ namespace InvoiceManagementWebApp.Repository
             Context = context;
         }
 
-        public IEnumerable<Invoice> GetAll()
+        public List<Invoice> GetAll()
         {
             return Context.Invoices.Include("Customer").Include("Vendor").Include("Lines").ToList();
         }
@@ -79,7 +79,7 @@ namespace InvoiceManagementWebApp.Repository
                 invoice.State = entity.State;
                 invoice.Customer = Context.Companies.Single(a => a.CompanyId == entity.Customer.CompanyId);
                 invoice.Vendor = Context.Companies.Single(a => a.CompanyId == entity.Vendor.CompanyId);
-                invoice.Lines = Context.InvoiceLines.Where(a => a.Invoice.InvoiceId == entity.InvoiceId);
+                invoice.Lines = Context.InvoiceLines.Where(a => a.Invoice.InvoiceId == entity.InvoiceId).ToList();
 
                 return Context.SaveChanges() > 0;
             }

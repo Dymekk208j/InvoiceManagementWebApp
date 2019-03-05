@@ -17,7 +17,7 @@ namespace InvoiceManagementWebApp.Repository
             Context = context;
         }
 
-        public IEnumerable<Company> GetAll()
+        public List<Company> GetAll()
         {
             return Context.Companies.ToList();
         }

@@ -213,6 +213,14 @@
     <Compile Include="Migrations\201903041643585_Initial.Designer.cs">
       <DependentUpon>201903041643585_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903042344263_CreatedModels.cs" />
+    <Compile Include="Migrations\201903042344263_CreatedModels.Designer.cs">
+      <DependentUpon>201903042344263_CreatedModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903042346456_UpdatedModels.cs" />
+    <Compile Include="Migrations\201903042346456_UpdatedModels.Designer.cs">
+      <DependentUpon>201903042346456_UpdatedModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseModels\Company.cs" />
     <Compile Include="Models\DatabaseModels\DatabaseInitializer\DbInitializer.cs" />
@@ -468,6 +476,9 @@
     <Content Include="Views\Shared\_LeftMenuPartialView.cshtml" />
     <Content Include="Views\Shared\_RightMenuPartialView.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Invoice\_CreateNewPartialView.cshtml" />
+    <Content Include="Views\Invoice\_ModificationPartialView.cshtml" />
+    <Content Include="Views\Invoice\_TablePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -487,6 +498,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903041643585_Initial.resx">
       <DependentUpon>201903041643585_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903042344263_CreatedModels.resx">
+      <DependentUpon>201903042344263_CreatedModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903042346456_UpdatedModels.resx">
+      <DependentUpon>201903042346456_UpdatedModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

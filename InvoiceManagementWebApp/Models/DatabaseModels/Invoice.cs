@@ -45,7 +45,7 @@ namespace InvoiceManagementWebApp.Models.DatabaseModels
         public Company Vendor { get; set; }
 
         [Display(Name = "Wiersze faktury")]
-        public virtual IEnumerable<InvoiceLine> Lines { get; set; }
+        public virtual List<InvoiceLine> Lines { get; set; }
 
     }
 }

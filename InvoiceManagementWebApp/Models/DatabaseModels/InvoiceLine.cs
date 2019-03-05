@@ -24,6 +24,7 @@ namespace InvoiceManagementWebApp.Models.DatabaseModels
         [Display(Name = "Kwota wiersza")]
         public decimal LineAmount { get; set; }
 
+        [Required]
         public Invoice Invoice { get; set; }
     }
 }

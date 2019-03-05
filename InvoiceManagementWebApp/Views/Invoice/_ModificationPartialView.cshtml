@@ -1,0 +1,31 @@
+﻿@*@model LeagueOfLegendsFindTeamApp.Models.DatabaseModels.Region
+
+<div class="card-header">
+    <strong>Modification @Html.Name(Model.Name) region</strong>
+</div>
+<div class="card-body">
+    @Html.ValidationSummary(false, "", new { @class = "ml-3 text-danger" })
+    @{
+        using (Ajax.BeginForm("ModifyRegion", "Region",
+            new AjaxOptions { HttpMethod = "post", UpdateTargetId = "RegionCard", InsertionMode = InsertionMode.Replace, OnSuccess = "LoadTable()" },
+            new { id = "RegionCard" }))
+        {
+            @Html.HiddenFor(m => m.RegionId)
+
+            @Html.LabelFor(m => m.Name)
+            @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" }, })
+
+
+
+            <button type="submit" class="btn btn-sm btn-success float-right mt-5"><i class="zmdi zmdi-upload mr-2" id="BtnUpdate" name="BtnUpdate"></i>Update</button>
+        }
+
+        <button type="button" class="btn btn-sm btn-secondary float-left mt-5" name="BtnReturn" id="BtnReturn" onclick="GoToTableForm()"><i class="zmdi zmdi-long-arrow-return mr-2"></i>Return</button>
+
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-sm btn-danger mt-5" name="BtnReturn" id="btnRemove" onclick="RemoveRegion(@Html.Raw(Model.RegionId))"><i class="zmdi zmdi-delete mr-2"></i>Remove</button>
+        </div>
+    }
+</div>*@
+
+

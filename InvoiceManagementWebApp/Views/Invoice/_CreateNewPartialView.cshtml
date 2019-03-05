@@ -1,0 +1,73 @@
+﻿@model InvoiceManagementWebApp.Models.DatabaseModels.Invoice
+
+<div class="card-body">
+    @Html.ValidationSummary(false, "", new { @class = "ml-3 text-danger" })
+    @{
+        using (Ajax.BeginForm("Create", "Invoice",
+            new AjaxOptions { HttpMethod = "post", UpdateTargetId = "InvoiceCard", InsertionMode = InsertionMode.Replace, OnSuccess = "LoadTable()" },
+            new { id = "InvoiceCard" }))
+        {
+            @*@Html.LabelFor(m => m.Name)
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" }, })*@
+            <div class="card mt-3">
+                <div class="card-header p-1 m-0">
+                    <strong>Informacje ogólne</strong>
+                </div>
+                <div class="card-body ">
+                    <div class="row mb-2">
+                        <div class="col-2">
+                            @Html.LabelFor(m => m.InvoiceNo)
+                        </div>
+                        <div class="col-4">
+                            @Html.EditorFor(m => m.InvoiceNo, new { htmlAttributes = new { @class = "form-control" }, })
+                        </div>
+
+                        <div class="col-2">
+                            @Html.LabelFor(m => m.PostingDate)
+                        </div>
+                        <div class="col-4">
+                            @Html.EditorFor(m => m.PostingDate, new { htmlAttributes = new { @class = "form-control" }, })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-2">
+                            @Html.LabelFor(m => m.CurrencyCode)
+                        </div>
+                        <div class="col-4">
+                            @Html.EditorFor(m => m.CurrencyCode, new { htmlAttributes = new { @class = "form-control" }, })
+                        </div>
+
+                        <div class="col-2">
+                            @Html.LabelFor(m => m.DocumentDate)
+                        </div>
+                        <div class="col-4">
+                            @Html.EditorFor(m => m.DocumentDate, new { htmlAttributes = new { @class = "form-control" }, })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-2">
+                            @Html.LabelFor(m => m.State)
+                        </div>
+                        <div class="col-4">
+                            @Html.EditorFor(m => m.State, new { htmlAttributes = new { @class = "form-control" }, })
+                        </div>
+
+                        <div class="col-2">
+                            @Html.LabelFor(m => m.PaymentDue)
+                        </div>
+                        <div class="col-4">
+                            @Html.EditorFor(m => m.PaymentDue, new { htmlAttributes = new { @class = "form-control" }, })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-sm btn-success float-right mt-5"><i class="zmdi zmdi-plus mr-2" id="BtnAdd" name="BtnAdd"></i>Create</button>
+        }
+
+        <button type="button" class="btn btn-sm btn-secondary float-left mt-5" name="BtnReturn" id="BtnReturn" onclick="GoToTableForm()"><i class="zmdi zmdi-long-arrow-return mr-2"></i>Return</button>
+
+    }
+</div>
+
+

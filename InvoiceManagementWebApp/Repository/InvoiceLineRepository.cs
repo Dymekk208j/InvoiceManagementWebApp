@@ -17,7 +17,7 @@ namespace InvoiceManagementWebApp.Repository
             Context = context;
         }
 
-        public IEnumerable<InvoiceLine> GetAll()
+        public List<InvoiceLine> GetAll()
         {
             return Context.InvoiceLines.Include("Invoice").ToList();
         }
