@@ -76,7 +76,7 @@
                 $.ajax(
                     {
                         url: "@Url.Action("Remove", "Company")",
-                        data: { comapnyId: id },
+                        data: { companyId: id },
                         success: function(result) {
                             $("#CompanyCard").html(result);
                             LoadTable();
