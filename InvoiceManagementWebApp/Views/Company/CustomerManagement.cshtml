@@ -1,0 +1,88 @@
+﻿@section AdditionalCss
+{
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+}
+
+<div class="col-lg-12">
+    <div class="card mt-1" style="min-height: 500px">
+        <div class="card-header">
+            <strong>Nabywcy</strong>
+        </div>
+        <div id="CompanyCard">
+            @Html.Action("GetTable", "Company", new { relation = 0 })
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+
+    <script>
+        function GoToCreateForm() {
+            $.ajax({
+                url: "@Url.Action("GetCreatePartialView", "Company")",
+                data: { relation: 0 },
+                success: function(result) {
+                    $("#CompanyCard").html(result);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function GoToTableForm() {
+            $.ajax({
+                url: "@Url.Action("GetTable", "Company")",
+                data: { relation: 0 },
+                success: function(result) {
+                    $("#CompanyCard").html(result);
+                    LoadTable();                }
+            });
+        }
+    </script>
+
+    <script>
+        LoadTable();
+
+        function LoadTable() {
+            $('#CompaniesTable').DataTable();
+        }
+    </script>
+
+
+    <script>
+        function GoToModificationForm(id) {
+            $.ajax(
+                {
+                    url: "@Url.Action("GetModificationPartialView", "Company")",
+                    data: { companyId: id },
+                    success: function(result) {
+                        $("#CompanyCard").html(result);
+                    }
+                });
+        }
+
+        function Remove(id) {
+            if (confirm('Czy na pewno chcesz usunąć ten kontakt?')) {
+                $.ajax(
+                    {
+                        url: "@Url.Action("Remove", "Company")",
+                        data: { comapnyId: id },
+                        success: function(result) {
+                            $("#CompanyCard").html(result);
+                            LoadTable();
+                        }
+                    });
+            }
+        }
+    </script>
+}

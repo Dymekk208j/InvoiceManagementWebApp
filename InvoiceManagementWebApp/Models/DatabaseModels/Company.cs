@@ -2,13 +2,14 @@
 
 namespace InvoiceManagementWebApp.Models.DatabaseModels
 {
-    public enum Type
+    public enum RelationType
     {
         [Display(Name = "Nabywca")]
         Customer,
         [Display(Name = "Dostawca")]
         Vendor
     }
+
     public class Company
     {
         public int CompanyId { get; set; }
@@ -37,6 +38,6 @@ namespace InvoiceManagementWebApp.Models.DatabaseModels
         [Display(Name = "Numer telefonu")]
         public string PhoneNumber { get; set; }
 
-        public Type Type { get; set; }
+        public RelationType Relation { get; set; }
     }
 }

@@ -7,9 +7,7 @@
             new AjaxOptions { HttpMethod = "post", UpdateTargetId = "InvoiceCard", InsertionMode = InsertionMode.Replace, OnSuccess = "LoadTable()" },
             new { id = "InvoiceCard" }))
         {
-            @*@Html.LabelFor(m => m.Name)
-                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" }, })*@
-            <div class="card mt-3">
+            <div class="card mt-3" name="GeneralInfo">
                 <div class="card-header p-1 m-0">
                     <strong>Informacje ogólne</strong>
                 </div>
@@ -19,14 +17,14 @@
                             @Html.LabelFor(m => m.InvoiceNo)
                         </div>
                         <div class="col-4">
-                            @Html.EditorFor(m => m.InvoiceNo, new { htmlAttributes = new { @class = "form-control" }, })
+                            @Html.EditorFor(m => m.InvoiceNo, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
 
                         <div class="col-2">
                             @Html.LabelFor(m => m.PostingDate)
                         </div>
                         <div class="col-4">
-                            @Html.EditorFor(m => m.PostingDate, new { htmlAttributes = new { @class = "form-control" }, })
+                            <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="PostingDate" name="PostingDate">
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -34,14 +32,14 @@
                             @Html.LabelFor(m => m.CurrencyCode)
                         </div>
                         <div class="col-4">
-                            @Html.EditorFor(m => m.CurrencyCode, new { htmlAttributes = new { @class = "form-control" }, })
+                            @Html.EditorFor(m => m.CurrencyCode, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
 
                         <div class="col-2">
                             @Html.LabelFor(m => m.DocumentDate)
                         </div>
                         <div class="col-4">
-                            @Html.EditorFor(m => m.DocumentDate, new { htmlAttributes = new { @class = "form-control" }, })
+                            <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="DocumentDate" name="DocumentDate">
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -49,16 +47,40 @@
                             @Html.LabelFor(m => m.State)
                         </div>
                         <div class="col-4">
-                            @Html.EditorFor(m => m.State, new { htmlAttributes = new { @class = "form-control" }, })
+                            @Html.EnumDropDownListFor(m => m.State, new { @class = "form-control" })
                         </div>
 
                         <div class="col-2">
                             @Html.LabelFor(m => m.PaymentDue)
                         </div>
                         <div class="col-4">
-                            @Html.EditorFor(m => m.PaymentDue, new { htmlAttributes = new { @class = "form-control" }, })
+                            <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="PaymentDue" name="PaymentDue">
                         </div>
                     </div>
+
+                    <div class="row mb-2">
+                        <div class="col-2 pl-3">
+                            @Html.LabelFor(m => m.Vendor)
+                        </div>
+                        <div class="col-4 ">
+                            @Html.EditorFor(m => m.Vendor.CompanyId, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="col-2 pl-3">
+                            @Html.LabelFor(m => m.Customer)
+                        </div>
+                        <div class="col-4 ">
+                            @Html.EditorFor(m => m.Customer.CompanyId, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3" name="LinesCard">
+                <div class="card-header p-1 m-0">
+                    <strong>Wiersze faktury</strong>
+                </div>
+                <div class="card-body p-0">
+                    @Html.Partial("_InvoiceLinesPartialView", Model.Lines)
                 </div>
             </div>
 

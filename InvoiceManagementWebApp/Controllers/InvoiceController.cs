@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using InvoiceManagementWebApp.Models.DatabaseModels;
 using InvoiceManagementWebApp.Repository;
 
@@ -25,7 +26,11 @@ namespace InvoiceManagementWebApp.Controllers
 
         public ActionResult GetCreatePartialView()
         {
-            return PartialView("_CreateNewPartialView", new Invoice());
+            var invoice = new Invoice();
+            invoice.Lines = new List<InvoiceLine>(15);
+            for (int i = 0; i < 15; i++) invoice.Lines.Add(null);
+
+            return PartialView("_CreateNewPartialView", invoice);
         }
 
         public ActionResult Create(Invoice invoice)

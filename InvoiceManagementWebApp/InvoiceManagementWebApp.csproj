@@ -204,6 +204,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -220,6 +221,10 @@
     <Compile Include="Migrations\201903042346456_UpdatedModels.cs" />
     <Compile Include="Migrations\201903042346456_UpdatedModels.Designer.cs">
       <DependentUpon>201903042346456_UpdatedModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903061512596_UpdateModel.cs" />
+    <Compile Include="Migrations\201903061512596_UpdateModel.Designer.cs">
+      <DependentUpon>201903061512596_UpdateModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseModels\Company.cs" />
@@ -479,6 +484,12 @@
     <Content Include="Views\Invoice\_CreateNewPartialView.cshtml" />
     <Content Include="Views\Invoice\_ModificationPartialView.cshtml" />
     <Content Include="Views\Invoice\_TablePartialView.cshtml" />
+    <Content Include="Views\Invoice\_InvoiceLinesPartialView.cshtml" />
+    <Content Include="Views\Company\CustomerManagement.cshtml" />
+    <Content Include="Views\Company\_TablePartialView.cshtml" />
+    <Content Include="Views\Company\_CreatePartialView.cshtml" />
+    <Content Include="Views\Company\_ModificationPartialView.cshtml" />
+    <Content Include="Views\Company\VendorManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -504,6 +515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903042346456_UpdatedModels.resx">
       <DependentUpon>201903042346456_UpdatedModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903061512596_UpdateModel.resx">
+      <DependentUpon>201903061512596_UpdateModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

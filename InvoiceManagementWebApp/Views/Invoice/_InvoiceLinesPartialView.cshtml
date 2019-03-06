@@ -1,0 +1,33 @@
+﻿@model List<InvoiceManagementWebApp.Models.DatabaseModels.InvoiceLine>
+
+<table class="table  table-sm table-hover w-100">
+    <thead>
+    <tr>
+        <th>@Html.Label("#")</th>
+        <th>@Html.LabelFor(m => m.FirstOrDefault().Name)</th>
+        <th>@Html.LabelFor(m => m.FirstOrDefault().Quantity)</th>
+        <th>@Html.LabelFor(m => m.FirstOrDefault().NetAmount)</th>
+        <th>@Html.LabelFor(m => m.FirstOrDefault().VatPrc)</th>
+        <th>@Html.LabelFor(m => m.FirstOrDefault().GrossAmount)</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @{
+        if (Model != null)
+        {
+            for (var i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@Html.Name((i+1).ToString())</td>
+                    <td>@Html.EditorFor(x => x[i].Name)</td>
+                    <td>@Html.EditorFor(x => x[i].Quantity)</td>
+                    <td>@Html.EditorFor(x => x[i].NetAmount)</td>
+                    <td>@Html.EditorFor(x => x[i].VatPrc)</td>
+                    <td>@Html.EditorFor(x => x[i].GrossAmount)</td>
+                </tr>
+            }
+        }
+    }
+    </tbody>
+</table>

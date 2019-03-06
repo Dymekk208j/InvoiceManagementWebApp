@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using InvoiceManagementWebApp.Models;
 using InvoiceManagementWebApp.Models.DatabaseModels;
 using Unity.Attributes;
+using RelationType = InvoiceManagementWebApp.Models.DatabaseModels.RelationType;
 
 namespace InvoiceManagementWebApp.Repository
 {
@@ -15,6 +15,11 @@ namespace InvoiceManagementWebApp.Repository
         public CompanyRepository(ApplicationDbContext context)
         {
             Context = context;
+        }
+
+        public List<Company> GetAll(RelationType type)
+        {
+            return Context.Companies.Where(c => c.Relation == type).ToList();
         }
 
         public List<Company> GetAll()
@@ -76,7 +81,7 @@ namespace InvoiceManagementWebApp.Repository
                 company.City = entity.City;
                 company.PostCode = entity.PostCode;
                 company.PhoneNumber = entity.PhoneNumber;
-                company.Type = entity.Type;
+                company.Relation = entity.Relation;
 
                 return Context.SaveChanges() > 0;
             }
