@@ -1,0 +1,84 @@
+﻿@using InvoiceManagementWebApp.Models.DatabaseModels
+@model List<InvoiceManagementWebApp.Models.DatabaseModels.Company>
+
+<div class="modal fade" id="selectCustomerModal" tabindex="-1" role="dialog" aria-labelledby="selectCustomerModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Wybierz nabywcę</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="CustomersTable" class="table table-sm table-bordered table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">#</th>
+                        <th>Nazwa</th>
+                        <th>NIP</th>
+                        <th>REGON</th>
+                        <th>Miasto</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var company in Model.Where(c => c.Relation == RelationType.Customer))
+                    {
+                        <tr data-dismiss="modal" onclick="SetCompanyId(@Html.Raw(company.CompanyId), @Html.Raw((int)company.Relation))">
+                            <td class="pl-2">@Html.Name(company.CompanyId + ". ")</td>
+                            <td class="pl-2">@Html.Name(company.Name)</td>
+                            <td class="pl-2">@Html.Name(company.Nip)</td>
+                            <td class="pl-2">@Html.Name(company.Regon)</td>
+                            <td class="pl-2">@Html.Name(company.City)</td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="selectVendorModal" tabindex="-1" role="dialog" aria-labelledby="selectVendorModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="selectVendorModalTitle">Wybierz dostawcę</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="VendorsTable" class="table table-sm table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%">#</th>
+                            <th>Nazwa</th>
+                            <th>NIP</th>
+                            <th>REGON</th>
+                            <th>Miasto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var company in Model.Where(c => c.Relation == RelationType.Vendor))
+                        {
+                            <tr data-dismiss="modal" onclick="SetCompanyId(@Html.Raw(company.CompanyId), @Html.Raw((int)company.Relation))">
+                                <td class="pl-2">@Html.Name(company.CompanyId + ". ")</td>
+                                <td class="pl-2">@Html.Name(company.Name)</td>
+                                <td class="pl-2">@Html.Name(company.Nip)</td>
+                                <td class="pl-2">@Html.Name(company.Regon)</td>
+                                <td class="pl-2">@Html.Name(company.City)</td>
+                            </tr>
+                        }
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

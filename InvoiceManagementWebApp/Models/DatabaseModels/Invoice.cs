@@ -9,11 +9,7 @@ namespace InvoiceManagementWebApp.Models.DatabaseModels
         [Display(Name = "Otwarta")]
         Open,
         [Display(Name = "Zaksięgowana")]
-        Posted,
-        [Display(Name = "Anulowana")]
-        Canceled,
-        [Display(Name = "Korekta")]
-        Correction
+        Posted
     }
 
     public class Invoice
@@ -21,18 +17,23 @@ namespace InvoiceManagementWebApp.Models.DatabaseModels
         public int InvoiceId { get; set; }
 
         [Display(Name = "Numer faktury")]
+        [Required(ErrorMessage = "Numer faktury nie może być pusty")]
         public string InvoiceNo { get; set; }
 
         [Display(Name = "Kod waluty")]
+        [Required(ErrorMessage = "Kod waluty nie może być pusty")]
         public string CurrencyCode { get; set; }
 
         [Display(Name = "Data księgowania")]
+        [Required(ErrorMessage = "Data księgowania nie może być pusta")]
         public DateTime PostingDate { get; set; }
 
         [Display(Name = "Data dokumentu")]
+        [Required(ErrorMessage = "Data dokumentu nie może być pusta")]
         public DateTime DocumentDate { get; set; }
 
         [Display(Name = "Termin płatności")]
+        [Required(ErrorMessage = "Termin płatności nie może być pusta")]
         public DateTime PaymentDue { get; set; }
 
         [Display(Name = "Stan")]

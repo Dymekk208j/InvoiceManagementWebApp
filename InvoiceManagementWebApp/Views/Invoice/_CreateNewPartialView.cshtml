@@ -7,10 +7,12 @@
             new AjaxOptions { HttpMethod = "post", UpdateTargetId = "InvoiceCard", InsertionMode = InsertionMode.Replace, OnSuccess = "LoadTable()" },
             new { id = "InvoiceCard" }))
         {
+
             <div class="card mt-3" name="GeneralInfo">
                 <div class="card-header p-1 m-0">
                     <strong>Informacje ogólne</strong>
                 </div>
+
                 <div class="card-body ">
                     <div class="row mb-2">
                         <div class="col-2">
@@ -47,7 +49,7 @@
                             @Html.LabelFor(m => m.State)
                         </div>
                         <div class="col-4">
-                            @Html.EnumDropDownListFor(m => m.State, new { @class = "form-control" })
+                            @Html.EnumDropDownListFor(m => m.State, new { @class = "form-control", @disabled = "disabled" })
                         </div>
 
                         <div class="col-2">
@@ -63,18 +65,18 @@
                             @Html.LabelFor(m => m.Vendor)
                         </div>
                         <div class="col-4 ">
-                            @Html.EditorFor(m => m.Vendor.CompanyId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Vendor.CompanyId, new { htmlAttributes = new { @class = "form-control", @data_toggle = "modal", @data_target = "#selectVendorModal" } })
                         </div>
-
                         <div class="col-2 pl-3">
                             @Html.LabelFor(m => m.Customer)
                         </div>
                         <div class="col-4 ">
-                            @Html.EditorFor(m => m.Customer.CompanyId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(m => m.Customer.CompanyId, new { htmlAttributes = new { @class = "form-control", @data_toggle = "modal", @data_target = "#selectCustomerModal" } })
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="card mt-3" name="LinesCard">
                 <div class="card-header p-1 m-0">
                     <strong>Wiersze faktury</strong>
@@ -83,13 +85,28 @@
                     @Html.Partial("_InvoiceLinesPartialView", Model.Lines)
                 </div>
             </div>
+        
+            <input id="save" name="save" type="hidden" value="false" />
 
-            <button type="submit" class="btn btn-sm btn-success float-right mt-5"><i class="zmdi zmdi-plus mr-2" id="BtnAdd" name="BtnAdd"></i>Create</button>
+            
+            <div class="row">
+                <div class="col-4">
+                    <button type="button" class="btn btn-sm btn-secondary float-left mt-5" name="BtnReturn" id="BtnReturn" onclick="GoToTableForm()"><i class="zmdi zmdi-long-arrow-return mr-2"></i>Anuluj</button>
+                </div>
+                <div class="col-4 text-center">
+            <button type="submit" class="btn btn-sm btn-secondary mt-5" name="btnSave" id="btnSave" onclick="saving()"><i class="fas fa-save mr-2"></i>Zapisz</button>
+
+                </div>
+                <div class="col-4">
+                    <button type="submit" class="btn btn-sm btn-success float-right mt-5" id="BtnAdd" name="BtnAdd" onclick="posting()"><i class="fas fa-plus mr-2"></i>Księguj</button>
+                </div>
+            </div>
+
         }
-
-        <button type="button" class="btn btn-sm btn-secondary float-left mt-5" name="BtnReturn" id="BtnReturn" onclick="GoToTableForm()"><i class="zmdi zmdi-long-arrow-return mr-2"></i>Return</button>
-
     }
+
+    @Html.Action("GetSelectCompanyPartialView", "Invoice")
+
 </div>
 
 

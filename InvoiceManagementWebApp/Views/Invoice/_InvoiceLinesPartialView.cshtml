@@ -3,11 +3,11 @@
 <table class="table  table-sm table-hover w-100">
     <thead>
     <tr>
-        <th>@Html.Label("#")</th>
-        <th>@Html.LabelFor(m => m.FirstOrDefault().Name)</th>
+        <th style="width: 1%">@Html.Label("#")</th>
+        <th style="width: 60%">@Html.LabelFor(m => m.FirstOrDefault().Name)</th>
         <th>@Html.LabelFor(m => m.FirstOrDefault().Quantity)</th>
         <th>@Html.LabelFor(m => m.FirstOrDefault().NetAmount)</th>
-        <th>@Html.LabelFor(m => m.FirstOrDefault().VatPrc)</th>
+        <th style="width: 4%">@Html.LabelFor(m => m.FirstOrDefault().VatPrc)</th>
         <th>@Html.LabelFor(m => m.FirstOrDefault().GrossAmount)</th>
     </tr>
     </thead>
@@ -20,11 +20,11 @@
             {
                 <tr>
                     <td>@Html.Name((i+1).ToString())</td>
-                    <td>@Html.EditorFor(x => x[i].Name)</td>
-                    <td>@Html.EditorFor(x => x[i].Quantity)</td>
-                    <td>@Html.EditorFor(x => x[i].NetAmount)</td>
-                    <td>@Html.EditorFor(x => x[i].VatPrc)</td>
-                    <td>@Html.EditorFor(x => x[i].GrossAmount)</td>
+                    <td>@Html.EditorFor(x => Model[i].Name, new{htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].Name" } })</td>
+                    <td>@Html.EditorFor(x => Model[i].Quantity, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].Quantity" } })</td>
+                    <td>@Html.EditorFor(x => Model[i].NetAmount, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].NetAmount" } })</td>
+                    <td>@Html.EditorFor(x => Model[i].VatPrc, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].VatPrc" } })</td>
+                    <td>@Html.EditorFor(x => Model[i].GrossAmount, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].GrossAmount" } })</td>
                 </tr>
             }
         }

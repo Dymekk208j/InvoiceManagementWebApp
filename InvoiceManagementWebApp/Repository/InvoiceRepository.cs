@@ -22,6 +22,11 @@ namespace InvoiceManagementWebApp.Repository
             return Context.Invoices.Include("Customer").Include("Vendor").Include("Lines").ToList();
         }
 
+        public List<Company> GetCompanies()
+        {
+            return Context.Companies.ToList();
+        }
+
         public Invoice Get(int id)
         {
             return Context.Invoices.Include("Customer").Include("Vendor").Include("Lines").First(c => c.InvoiceId == id);
@@ -32,7 +37,7 @@ namespace InvoiceManagementWebApp.Repository
             Context.Invoices.Add(entity);
             Context.Entry(entity.Customer).State = EntityState.Unchanged;
             Context.Entry(entity.Vendor).State = EntityState.Unchanged;
-            Context.Entry(entity.Lines).State = EntityState.Unchanged;
+          
             return Context.SaveChanges() > 0;
         }
 
@@ -55,7 +60,7 @@ namespace InvoiceManagementWebApp.Repository
         {
             try
             {
-                Invoice obj = Context.Invoices.First(a => a.InvoiceId == id);
+                Invoice obj = Context.Invoices.Include("Customer").Include("Vendor").Include("Lines").First(a => a.InvoiceId == id);
                 Context.Invoices.Remove(obj);
             }
             catch (Exception e)
