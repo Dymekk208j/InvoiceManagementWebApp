@@ -54,8 +54,8 @@ namespace InvoiceManagementWebApp.Controllers
             ModelState.Clear();
             TryValidateModel(invoice);
 
-            if (invoice.Customer == null) ModelState.AddModelError("", "Musisz wybrać nabywcę");
-            if (invoice.Vendor == null) ModelState.AddModelError("", "Musisz wybrać dostawcę");
+            if (invoice.Customer == null) ModelState.AddModelError("", @"Musisz wybrać nabywcę");
+            if (invoice.Vendor == null) ModelState.AddModelError("", @"Musisz wybrać dostawcę");
 
             if (Request.IsAjaxRequest())
             {
@@ -90,8 +90,8 @@ namespace InvoiceManagementWebApp.Controllers
             ModelState.Clear();
             TryValidateModel(invoice);
 
-            if (invoice.Customer == null) ModelState.AddModelError("", "Musisz wybrać nabywcę");
-            if (invoice.Vendor == null) ModelState.AddModelError("", "Musisz wybrać dostawcę");
+            if (invoice.Customer == null) ModelState.AddModelError("", @"Musisz wybrać nabywcę");
+            if (invoice.Vendor == null) ModelState.AddModelError("", @"Musisz wybrać dostawcę");
 
             if (Request.IsAjaxRequest())
             {
