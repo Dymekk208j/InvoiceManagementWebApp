@@ -1,4 +1,5 @@
-﻿@section AdditionalCss
+﻿@using InvoiceManagementWebApp.Models.DatabaseModels
+@section AdditionalCss
 {
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -6,7 +7,7 @@
 
 <div class="col-lg-12">
     <div class="card mt-1" style="min-height: 500px" id="InvoiceCard">
-        @Html.Action("GetTable", "Invoice")
+        @Html.Action("GetTable", "Invoice", new { type  = InvoiceType.Sales})
     </div>
 </div>
 
@@ -32,7 +33,7 @@
 
         function GoToCreateForm() {
             $.ajax({
-                url: "@Url.Action("GetCreatePartialView", "Invoice")",
+                url: "@Url.Action("GetCreatePartialView", "Invoice", new {type = InvoiceType.Sales })",
                 success: function(result) {
                     $("#InvoiceCard").html(result);
                 }
@@ -43,7 +44,7 @@
     <script>
         function GoToTableForm() {
             $.ajax({
-                url: "@Url.Action("GetTable", "Invoice")",
+                url: "@Url.Action("GetTable", "Invoice", new { type = InvoiceType.Sales })",
                 success: function(result) {
                     $("#InvoiceCard").html(result);
                     $('#InvoiceTable').DataTable();

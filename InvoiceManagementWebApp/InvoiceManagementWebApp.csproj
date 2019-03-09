@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201903092054048_Invoice.Designer.cs">
       <DependentUpon>201903092054048_Invoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903092139220_Invoice1.cs" />
+    <Compile Include="Migrations\201903092139220_Invoice1.Designer.cs">
+      <DependentUpon>201903092139220_Invoice1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseModels\Company.cs" />
     <Compile Include="Models\DatabaseModels\DatabaseInitializer\DbInitializer.cs" />
@@ -496,7 +500,7 @@
     <Content Include="Views\Shared\_AccountManagementLayout.cshtml" />
     <Content Include="Views\Shared\_LeftMenuPartialView.cshtml" />
     <Content Include="Views\Shared\_RightMenuPartialView.cshtml" />
-    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Invoice\SalesInvoice.cshtml" />
     <Content Include="Views\Invoice\_CreateNewPartialView.cshtml" />
     <Content Include="Views\Invoice\_ModificationPartialView.cshtml" />
     <Content Include="Views\Invoice\_TablePartialView.cshtml" />
@@ -507,6 +511,7 @@
     <Content Include="Views\Company\_ModificationPartialView.cshtml" />
     <Content Include="Views\Company\VendorManagement.cshtml" />
     <Content Include="Views\Invoice\_ModalSelectCompanyPartialView.cshtml" />
+    <Content Include="Views\Invoice\PurchaseInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -547,6 +552,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903092054048_Invoice.resx">
       <DependentUpon>201903092054048_Invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903092139220_Invoice1.resx">
+      <DependentUpon>201903092139220_Invoice1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

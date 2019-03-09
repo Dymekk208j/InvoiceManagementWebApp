@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using InvoiceManagementWebApp.Models.DatabaseModels;
+using InvoiceManagementWebApp.Repository;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using InvoiceManagementWebApp.Models.DatabaseModels;
-using InvoiceManagementWebApp.Repository;
 
 namespace InvoiceManagementWebApp.Controllers
 {
@@ -15,20 +15,29 @@ namespace InvoiceManagementWebApp.Controllers
             _repository = invoiceRepository;
         }
 
-        public ActionResult Index()
+        public ActionResult SalesInvoice()
         {
             return View();
         }
 
-        public ActionResult GetTable()
+        public ActionResult PurchaseInvoice()
         {
-            return PartialView("_TablePartialView", _repository.GetAll());
+            return View();
         }
 
-        public ActionResult GetCreatePartialView()
+        public ActionResult GetTable(InvoiceType type)
         {
-            var invoice = new Invoice();
-            invoice.Lines = new List<InvoiceLine>(15);
+            return PartialView("_TablePartialView", _repository.GetAll().Where(i => i.InvoiceType == type && i.State == State.Open));
+        }
+
+        public ActionResult GetCreatePartialView(InvoiceType type)
+        {
+            var invoice = new Invoice
+            {
+                InvoiceType = type,
+                Lines = new List<InvoiceLine>(15)
+            };
+
             for (int i = 0; i < 15; i++) invoice.Lines.Add(null);
 
             return PartialView("_CreateNewPartialView", invoice);
@@ -45,8 +54,8 @@ namespace InvoiceManagementWebApp.Controllers
             ModelState.Clear();
             TryValidateModel(invoice);
 
-            if(invoice.Customer == null) ModelState.AddModelError("", "Musisz wybrać nabywcę");
-            if(invoice.Vendor == null) ModelState.AddModelError("", "Musisz wybrać dostawcę");
+            if (invoice.Customer == null) ModelState.AddModelError("", "Musisz wybrać nabywcę");
+            if (invoice.Vendor == null) ModelState.AddModelError("", "Musisz wybrać dostawcę");
 
             if (Request.IsAjaxRequest())
             {
@@ -57,7 +66,7 @@ namespace InvoiceManagementWebApp.Controllers
                 else
                 {
                     int linesAmount = invoice.Lines.Count;
-                    for (int i = 0; i < 15- linesAmount; i++)
+                    for (int i = 0; i < 15 - linesAmount; i++)
                     {
                         invoice.Lines.Add(null);
                     }
@@ -65,7 +74,7 @@ namespace InvoiceManagementWebApp.Controllers
                 }
             }
 
-            return PartialView("_TablePartialView", _repository.GetAll());
+            return PartialView("_TablePartialView", _repository.GetAll().Where(i => i.InvoiceType == invoice.InvoiceType && i.State == State.Open));
         }
 
         public ActionResult Update(Invoice invoice, bool save)
@@ -76,6 +85,8 @@ namespace InvoiceManagementWebApp.Controllers
             invoice.Lines.RemoveAll(line => string.IsNullOrEmpty(line.Name));
             invoice.Customer = companies.FirstOrDefault(c => c.CompanyId == invoice.Customer.CompanyId);
             invoice.Vendor = companies.FirstOrDefault(c => c.CompanyId == invoice.Vendor.CompanyId);
+
+
             ModelState.Clear();
             TryValidateModel(invoice);
 
@@ -99,7 +110,7 @@ namespace InvoiceManagementWebApp.Controllers
                 }
             }
 
-            return PartialView("_TablePartialView", _repository.GetAll());
+            return PartialView("_TablePartialView", _repository.GetAll().Where(i => i.InvoiceType == invoice.InvoiceType && i.State == State.Open));
         }
 
         public ActionResult GetSelectCompanyPartialView()
@@ -114,9 +125,11 @@ namespace InvoiceManagementWebApp.Controllers
 
         public ActionResult Remove(int id)
         {
+            var type = _repository.Get(id).InvoiceType;
             _repository.Remove(id);
 
-            return PartialView("_TablePartialView", _repository.GetAll());
+            return PartialView("_TablePartialView", _repository.GetAll().Where(i => i.InvoiceType == type && i.State == State.Open));
+
         }
     }
 }

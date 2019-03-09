@@ -52,7 +52,7 @@ namespace InvoiceManagementWebApp.Controllers
         }
 
         //
-        // GET: /Manage/Index
+        // GET: /Manage/SalesInvoice
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =

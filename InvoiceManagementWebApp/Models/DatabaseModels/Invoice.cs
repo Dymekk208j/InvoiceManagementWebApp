@@ -12,6 +12,13 @@ namespace InvoiceManagementWebApp.Models.DatabaseModels
         Posted
     }
 
+    public enum InvoiceType
+    {
+        [Display(Name = "Sprzedaż")]
+        Sales,
+        [Display(Name = "Zakup")]
+        Purchase
+    }
     public class Invoice
     {
         public int InvoiceId { get; set; }
@@ -44,6 +51,8 @@ namespace InvoiceManagementWebApp.Models.DatabaseModels
 
         [Display(Name = "Dostawca")]
         public Company Vendor { get; set; }
+
+        public InvoiceType InvoiceType { get; set; }
 
         [Display(Name = "Wiersze faktury")]
         public virtual List<InvoiceLine> Lines { get; set; }
