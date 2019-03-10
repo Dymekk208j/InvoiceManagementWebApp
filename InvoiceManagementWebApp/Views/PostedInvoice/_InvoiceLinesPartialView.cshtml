@@ -1,0 +1,52 @@
+﻿@using System.Globalization
+@model List<InvoiceManagementWebApp.Models.DatabaseModels.InvoiceLine>
+
+<table class="table  table-sm table-hover w-100">
+    <thead>
+        <tr>
+            <th style="width: 1%">@Html.Label("#")</th>
+            <th style="width: 60%">@Html.LabelFor(m => m.FirstOrDefault().Name)</th>
+            <th>@Html.LabelFor(m => m.FirstOrDefault().Quantity)</th>
+            <th>@Html.LabelFor(m => m.FirstOrDefault().NetAmount)</th>
+            <th style="width: 4%">@Html.LabelFor(m => m.FirstOrDefault().VatPrc)</th>
+            <th>@Html.LabelFor(m => m.FirstOrDefault().GrossAmount)</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            decimal totalQuantity = 0;
+            decimal totalNetAmount = 0;
+            decimal totalGrossAmount = 0;
+
+            if (Model != null)
+            {
+                for (var i = 0; i < Model.Count; i++)
+                {
+
+                    <tr>
+                        <td>@Html.Name((i + 1) + ". ")</td>
+                        <td>@Html.DisplayFor(x => Model[i].Name, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].Name" } })</td>
+                        <td>@Html.DisplayFor(x => Model[i].Quantity, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].Quantity" } })</td>
+                        <td>@Html.DisplayFor(x => Model[i].NetAmount, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].NetAmount" } })</td>
+                        <td>@Html.DisplayFor(x => Model[i].VatPrc, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].VatPrc" } })</td>
+                        <td>@Html.DisplayFor(x => Model[i].GrossAmount, new { htmlAttributes = new { @class = "w-100", @Name = "Lines[" + i + "].GrossAmount" } })</td>
+                    </tr>
+
+                    totalQuantity += Model[i].Quantity;
+                    totalNetAmount += Model[i].NetAmount;
+                    totalGrossAmount += Model[i].GrossAmount;
+                }
+            }
+
+            <tr>
+                <td></td>
+                <td class="text-right pr-2"><strong>Podsumowanie:</strong></td>
+                <td><strong>@Html.Name(totalQuantity.ToString(CultureInfo.InvariantCulture))</strong></td>
+                <td><strong>@Html.Name(totalNetAmount.ToString(CultureInfo.InvariantCulture))</strong></td>
+                <td></td>
+                <td><strong>@Html.Name(totalGrossAmount.ToString(CultureInfo.InvariantCulture))</strong></td>
+            </tr>
+        }
+    </tbody>
+</table>

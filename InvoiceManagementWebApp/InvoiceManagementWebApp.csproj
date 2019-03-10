@@ -207,6 +207,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostedInvoiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -512,6 +513,11 @@
     <Content Include="Views\Company\VendorManagement.cshtml" />
     <Content Include="Views\Invoice\_ModalSelectCompanyPartialView.cshtml" />
     <Content Include="Views\Invoice\PurchaseInvoice.cshtml" />
+    <Content Include="Views\PostedInvoice\SalesInvoicesManagement.cshtml" />
+    <Content Include="Views\PostedInvoice\_TablePartialView.cshtml" />
+    <Content Include="Views\PostedInvoice\_DetailsFormPartialView.cshtml" />
+    <Content Include="Views\PostedInvoice\_InvoiceLinesPartialView.cshtml" />
+    <Content Include="Views\PostedInvoice\PurchaseInvoicesManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

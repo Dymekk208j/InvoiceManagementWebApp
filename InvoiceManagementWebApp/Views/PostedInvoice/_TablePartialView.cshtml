@@ -1,0 +1,30 @@
+﻿@model IEnumerable<InvoiceManagementWebApp.Models.DatabaseModels.Invoice>
+
+
+<div class="card-body">
+    <table id="InvoiceTable" class="table table-sm table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th style="width: 10%">Id</th>
+            <th>Numer faktury</th>
+            <th>Kod waluty</th>
+            <th>Nazwa dostawcy</th>
+            <th>Nazwa nabywcy</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr onclick="GoToDetailsForm(@Html.Raw(invoice.InvoiceId))">
+                <td class="pl-2">@Html.Name(invoice.InvoiceId + ". ")</td>
+                <td class="pl-2">@Html.Name(invoice.InvoiceNo)</td>
+                <td class="pl-2">@Html.Name(invoice.CurrencyCode)</td>
+                <td class="pl-2">@Html.Name(invoice.Vendor.Name)</td>
+                <td class="pl-2">@Html.Name(invoice.Customer.Name)</td>
+            </tr>
+        }
+    </table>
+
+</div>
+

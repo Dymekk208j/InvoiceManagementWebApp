@@ -1,0 +1,93 @@
+﻿@model InvoiceManagementWebApp.Models.DatabaseModels.Invoice
+
+<div class="card-body">
+    @Html.ValidationSummary(false, "", new { @class = "ml-3 text-danger" })
+
+    @Html.HiddenFor(m => m.InvoiceId)
+
+    <div class="card mt-3" name="GeneralInfo">
+        <div class="card-header p-1 m-0">
+            <strong>Informacje ogólne</strong>
+        </div>
+
+        <div class="card-body ">
+            <div class="row mb-2">
+                <div class="col-2">
+                    @Html.LabelFor(m => m.InvoiceNo)
+                </div>
+                <div class="col-4">
+                    @Html.EditorFor(m => m.InvoiceNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+
+                <div class="col-2">
+                    @Html.LabelFor(m => m.PostingDate)
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="PostingDate" name="PostingDate" readonly="readonly">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2">
+                    @Html.LabelFor(m => m.CurrencyCode)
+                </div>
+                <div class="col-4">
+                    @Html.EditorFor(m => m.CurrencyCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+
+                <div class="col-2">
+                    @Html.LabelFor(m => m.DocumentDate)
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="DocumentDate" name="DocumentDate" readonly="readonly">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2">
+                    @Html.LabelFor(m => m.State)
+                </div>
+                <div class="col-4">
+                    @Html.EnumDropDownListFor(m => m.State, new { @class = "form-control", @disabled = "disabled" })
+                </div>
+
+                <div class="col-2">
+                    @Html.LabelFor(m => m.PaymentDue)
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="PaymentDue" name="PaymentDue" readonly="readonly">
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-2 pl-3">
+                    @Html.LabelFor(m => m.Vendor)
+                </div>
+                <div class="col-4 ">
+                    @Html.EditorFor(m => m.Vendor.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+                <div class="col-2 pl-3">
+                    @Html.LabelFor(m => m.Customer)
+                </div>
+                <div class="col-4 ">
+                    @Html.EditorFor(m => m.Customer.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-3" name="LinesCard">
+        <div class="card-header p-1 m-0">
+            <strong>Wiersze faktury</strong>
+        </div>
+        <div class="card-body p-0">
+            @Html.Partial("_InvoiceLinesPartialView", Model.Lines)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <button type="button" class="btn btn-sm btn-secondary float-left mt-5" name="BtnReturn" id="BtnReturn" onclick="GoToTableForm()"><i class="zmdi zmdi-long-arrow-return mr-2"></i>Zamknij</button>
+        </div>
+    </div>
+</div>
+
+
