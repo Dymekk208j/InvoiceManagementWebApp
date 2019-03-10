@@ -5,6 +5,7 @@ using InvoiceManagementWebApp.Repository;
 
 namespace InvoiceManagementWebApp.Controllers
 {
+    [Authorize]
     public class PostedInvoiceController : Controller
     {
         private readonly InvoiceRepository _repository;

@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace InvoiceManagementWebApp.Controllers
 {
+    [Authorize]
     public class CompanyController : Controller
     {
         private readonly CompanyRepository _repository;
